@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<style>
+
+body{
+margin:0;
+background:#f3f3f3;
+font-family:sans-serif;
+display:flex;
+align-items:center;
+justify-content:center;
+height:100vh;
+}
+
+#container{
+width:90%;
+height:40px;
+background:#ddd;
+border-radius:20px;
+overflow:hidden;
+cursor:pointer;
+}
+
+#bar{
+height:100%;
+width:0%;
+background:linear-gradient(90deg,#4caf50,#ffc107,#f44336);
+transition:width 1s linear;
+}
+
+</style>
+</head>
+
+<body>
+
+<div id="container">
+<div id="bar"></div>
+</div>
+
+<script>
+
+let duration = 55 * 60; // 55 minutes
+let interval = null;
+let running = false;
+let elapsed = 0;
+
+const bar = document.getElementById("bar");
+const container = document.getElementById("container");
+
+container.onclick = () => {
+
+if(!running){
+
+running = true;
+
+interval = setInterval(()=>{
+
+elapsed++;
+
+let percent = (elapsed/duration)*100;
+bar.style.width = percent + "%";
+
+if(elapsed >= duration){
+clearInterval(interval);
+}
+
+},1000);
+
+}
+
+}
+
+</script>
+
+</body>
+</html>
